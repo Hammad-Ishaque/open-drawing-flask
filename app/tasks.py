@@ -1,5 +1,7 @@
 import uuid
+
 from redis import Redis
+
 from worker.worker import process_ai_task
 
 # Redis connection

@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_socketio import emit
-from app import socketio
-from app import redis_client
+
+from app import redis_client, socketio
 
 websocket_bp = Blueprint('websocket', __name__)
 

@@ -1,8 +1,9 @@
+import os
+
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_socketio import SocketIO
 from redis import Redis
-import os
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -20,6 +21,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 from app.auth import auth_bp
 from app.routes import api_bp
 from app.websocket import websocket_bp
+
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(api_bp, url_prefix='/api')
