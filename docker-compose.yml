@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  redis:
+    image: 'redis:alpine'
+    container_name: redis
+    ports:
+      - '6379:6379'
+
+  flask_api:
+    build: .
+    container_name: flask_api
+    ports:
+      - '5000:5000'
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+
+  worker:
+    build: .
+    container_name: celery_worker
+    entrypoint: celery -A worker.worker worker --loglevel=info
+    depends_on:
+      - redis
+    volumes:
+      - ./worker:/worker
